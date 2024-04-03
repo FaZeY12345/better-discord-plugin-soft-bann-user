@@ -13,27 +13,7 @@ let softBlockedUserNicknames = ["fabus"]
     load() {
         // BdApi.alert(`SoftBlockedUser plugin enabled. Blocked users are: ----> ${softBlockedUserNicknames.join(", ")} <----`)
     }
-    start() {
-        setInterval(function () { //set the code to repeat without pausing discord itself.
-            let chatMessagesAuthors = [...document.querySelectorAll("main li h2 span span")]
-            chatMessagesAuthors.forEach(messageAuthorElement => {
-                // using .some due to the feact it breaks as soonfirst true is returned .forEach isnt able to break (actuale is if u wrap in in try catch)
-                // https://stackoverflow.com/a/2641374/14077167
-                softBlockedUserNicknames.some(userNickname => {
-                    let nick_found = messageAuthorElement.innerText.includes(userNickname)
-                    if(nick_found){
-                        let root = messageAuthorElement.parentElement.parentElement.parentElement
-                        root.querySelector("div").innerText = `--> ${messageAuthorElement.innerText} was soft blocked -> ("${userNickname}" matched "${messageAuthorElement.innerText}")`
-                        root.querySelector("img").remove()
-                        root.querySelector("h2").remove()
-                    }
-                    return nick_found
-                })
-            })
-        }, 1000);
-
-
-    }
+    start() {v
     stop() {
 
     }
